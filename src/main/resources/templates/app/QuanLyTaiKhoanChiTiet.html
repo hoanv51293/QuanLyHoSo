@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<th:block th:fragment="QuanLyTaiKhoanChiTiet">
+		<div class="modal fade" id="modal-detail" role="dialog" data-backdrop="static">
+			<div class="modal-dialog" style="min-width: 600px;">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<th:block th:replace="fragments/ModalDetailHeader"/>
+					</div>
+					<div class="modal-body">
+						<form id="frm_detail">
+							<div class="area-input">
+							<div class="row">
+							<div class="col-md-12">
+							<div class="form-section">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<div class="div-input-infor">[[${@baseTag.message('QuanLyTaiKhoan.literal.taiKhoan')}]]</div>
+											<input type="text" class="form-control " id="userName" th:placeholder="${@baseTag.message('QuanLyTaiKhoan.literal.taiKhoan')}" maxlength=30 >
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<div class="div-input-infor">[[${@baseTag.message('QuanLyTaiKhoan.literal.hoVaTen')}]]</div>
+											<input type="text" class="form-control " id="hoTen" th:placeholder="${@baseTag.message('QuanLyTaiKhoan.literal.hoVaTen')}" maxlength=50>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<div class="div-input-infor">[[${@baseTag.message('QuanLyTaiKhoan.literal.quyen')}]]</div>
+											<select class="form-control radius" id="quyen" name="quyen">
+												<option th:each="db : ${QUYEN}" th:value="${db.key}" th:utext="|${db.value}|"></option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<!-- <th:block th:replace="fragments/LayoutDetailCommon"/> -->
+							</div>
+							</div>
+							</div>
+							</div>
+						</form>
+					</div>
+ 					<div class="modal-footer">
+						<th:block th:replace="fragments/ModalDetailFooter"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</th:block>
+</body>
+</html>

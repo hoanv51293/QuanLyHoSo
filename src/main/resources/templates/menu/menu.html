@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <title></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" />
+	<link th:href="@{/resources/css/menu.css}" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" th:href="@{/resources/css/darkmode.css}"/>
+	<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/resources/js/menu/bootstrap.min.js}"></script>
+	<script th:src="@{/resources/js/menu/jquery.metisMenu.js}"></script>
+	<script th:src="@{/resources/js/menu/custom-scripts.js}"></script>
+	<script>
+		$(document).ready(function() {
+			$("a:not(.level-menu)").click(function() {
+				$('a').removeClass('active-menu');
+				$(this).addClass('active-menu');
+			});
+		});
+	</script>
+	<style type="text/css">
+		.margin-left-1{
+			margin-left:15px;
+		}
+		.margin-left-2{
+			margin-left:30px;
+		}
+		.margin-left-3{
+			margin-left:45px;
+		}
+	</style>
+</head>
+
+<body class = "body-color">
+	<div id="wrapper">
+		<nav class="navbar-default navbar-side" role="navigation">
+			<div class="sidebar-collapse">
+				<ul class="nav" id="main-menu">
+					<!-- <li><a th:href="@{/home}" target="screen" class = "active-menu"><i class="fa fa-home" aria-hidden="true" style="font-size: 20px"></i>[[${@baseTag.message('common.menu.home')}]]</a></li> -->
+					<th:block th:if= "${listScreen != null and !listScreen.empty}">
+					<th:block th:each="data : ${listScreen}">
+						<th:block th:if= "${data.modeGenerateHtml != null and data.modeGenerateHtml == 'START'}">
+							<li>
+								<a href="#" class = "level-menu">
+								<th:block th:if= "${data.awesomeClass != null and data.awesomeClass != ''}">
+									<i th:class="'fa '+ ${data.awesomeClass}" style="font-size: 24px"></i>
+								</th:block>
+								[[${data.name}]]<span class="fa arrow"></span></a>
+							<ul th:class="'nav '+ ${data.level}">
+						</th:block>
+						<th:block th:if= "${data.url != null and data.url != ''}">
+							<li>
+							<a th:href="@{${data.url}}" target="screen">
+							<th:block th:if= "${data.awesomeClass != null and data.awesomeClass != ''}">
+								<i th:class="'fa '+ ${data.awesomeClass}" style="font-size: 24px"></i>
+							</th:block>
+							[[${data.name}]]</a>
+							</li>
+						</th:block>
+						<th:block th:if="${data.modeGenerateHtml == 'END'}" th:utext="'&lt;/ul&gt;'" /> 
+						<th:block th:if="${data.modeGenerateHtml == 'END'}" th:utext="'&lt;/il&gt;'" /> 
+					</th:block>
+				</ul>
+				
+			</div>
+		</nav>
+	</div>
+</body>
+</html>

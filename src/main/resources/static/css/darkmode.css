@@ -1,0 +1,23 @@
+/**
+ * DARK MODE
+ * 
+ */
+
+.body-color {
+	background-color: #DCD6F7;
+}
+.area-input .form-section{
+	background:#424874;
+	border: 2px solid #414141;
+}
+.text-color-header{
+	background-color: #424874;
+    color: #fff;
+}
+.navbar-default {
+	border: 0px solid black;
+}
+.page-item.active .page-link{
+	background-color: #424874 !important;
+	border: #424874 !important;
+}

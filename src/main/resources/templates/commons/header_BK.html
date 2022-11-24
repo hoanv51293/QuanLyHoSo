@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</head>
+<style>
+</style>
+
+<body>
+	<th:block th:fragment="header">
+		<div class="nav-header">
+			<nav class="navbar navbar-expand-sm   navbar-light">
+				<div class="collapse navbar-collapse" id="navbarToggler1">
+					<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+						<li class="nav-item"><a class="nav-link" th:href="@{/}">Home<span class="sr-only">(current)</span> </a>
+						</li>
+						<!-- <li class="nav-item dropdown dmenu">
+							<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> Seino Tool </a>
+							<div class="dropdown-menu sm-menu">
+								<a class="dropdown-item" th:href="@{/tool/t0001}">[[${@baseTag.message('t0001.title')}]]</a>
+							</div>
+						</li> -->
+						<th:block th:if="${user.roleId >= '1' and user.roleId < '99'}">
+							<li class="nav-item dropdown dmenu">
+							<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> Seino Personal </a>
+							<div class="dropdown-menu sm-menu">
+								<!-- <a class="dropdown-item font-italic" th:href="@{/personal/p0000}">(NYS)Daily Report And Log Work</a>
+								<a class="dropdown-item font-italic" th:href="@{/personal/p0001}">(NYS)My task</a> 
+								<a class="dropdown-item font-italic" th:href="@{/personal/p0002}">(NYS)Request Leave Plan</a> -->
+								<a class="dropdown-item" th:href="@{/personal/p0003}">[[${@baseTag.message('p0003.title')}]]</a>
+								<!-- <a class="dropdown-item font-italic" th:href="@{/personal/p0004}">(NYS)Re Estimation</a> -->
+								<a class="dropdown-item" th:href="@{/personal/p0005}">[[${@baseTag.message('p0005.title')}]]</a>
+								<a class="dropdown-item" th:href="@{/personal/p0006}">[[${@baseTag.message('p0006.title')}]]</a>
+							</div>
+							</li>
+						</th:block>
+						<!-- Only role PM see this -->
+						<th:block th:if="${user.roleId >= '3' and user.roleId < '99'}">
+							<li class="nav-item dropdown dmenu">
+							<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> Seino Manager </a>
+								<div class="dropdown-menu sm-menu">
+									<a class="dropdown-item" th:href="@{/manager/m0001}">[[${@baseTag.message('m0001.title')}]]</a>
+									<a class="dropdown-item" th:href="@{/manager/m0002}">[[${@baseTag.message('m0002.title')}]]</a>
+								</div>
+							</li>
+						</th:block>
+						<th:block th:if="${user.roleId >= '4'} and user.roleId < '99'">
+							<li class="nav-item dropdown dmenu">
+							<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> Seino QA </a>
+								<div class="dropdown-menu sm-menu">
+									<a class="dropdown-item" th:href="@{/qa/m0001}">TODO1</a>
+									<a class="dropdown-item" th:href="@{/qa/m0002}">TODO2</a>
+								</div>
+							</li>
+						</th:block>
+						<th:block th:if="${user.roleId == '99'}">
+							<li class="nav-item dropdown dmenu">
+								<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> Seino Admin </a>
+								<div class="dropdown-menu sm-menu">
+									<a class="dropdown-item" th:href="@{/admin/a0001}">User Management</a>
+								</div>
+							</li>
+						</th:block>
+						<li class="nav-item dropdown dmenu">
+						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> Seino Other </a>
+							<div class="dropdown-menu sm-menu">
+								<a class="dropdown-item" href="#">Other1</a>
+								<a class="dropdown-item" href="#">Other2</a>
+								<a class="dropdown-item" href="#">other3</a>
+							</div>
+						</li>
+						<th:block th:if="${user.roleId < '99'}">
+						<li class="nav-item"><a class="nav-link" th:href="@{/}"> REMIND(<b id = "numberOfRemind" class = "text-danger"></b>)</a></li>
+						<th:block th:if="${user.roleId < '99'}">
+					</ul>
+				</div>
+				<div class="collapse navbar-collapse" id="navbarToggler2">
+					<select onchange="reloadLanguage(this)">
+						<option value="vn" th:selected="${#strings.toString(user.locale) == 'vn'}">VN</option>
+						<option value="en" th:selected="${#strings.toString(user.locale) == 'en'}">EN</option>
+					</select>
+					<div class="social-part">
+						<a class = "color: #ffffff;" href="https://www.facebook.com/groups/867763667499313" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+						<!-- <i class="fa fa-twitter" aria-hidden="true"></i>
+						<i class="fa fa-instagram" aria-hidden="true"></i> -->
+					</div>
+					<a class="nav-link" th:if="${#request.userPrincipal != null}" th:href="@{/logout}">Logout</a>
+				</div>
+			</nav>
+		</div>
+	</th:block>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorate="~{commons/main}">
+<head>
+<title th:text="${@baseTag.message('QuanLyTaiKhoan.literal.title')}"></title>
+<script th:inline="text">
+</script>
+<script type="text/javascript" th:inline="javascript" charset="UTF-8" th:src="@{/resources/js/app/ThongTinTaiKhoan.js}"></script>
+<script th:inline="javascript">
+	messageHeaderModelDetailUpdate=[[${@baseTag.message('QuanLyTaiKhoan.literal.edit')}]];
+	messageHeaderModelDetailAdd=[[${@baseTag.message('QuanLyTaiKhoan.literal.add')}]];
+</script>
+<style>
+	.modal-dialog{
+		margin-top:0px;
+	}
+</style>
+</head>
+<body>
+	<div layout:fragment="content" th:remove="tag">
+		<!-- <div class="title-screen text-center mt-2">
+			<h2 class="font-weight-bold" th:text="${@baseTag.message('ThongTinTaiKhoan.literal.title')}"></h2>
+		</div> -->
+		<br>
+		<div class="modal-dialog" style="min-width: 600px;">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-body">
+					<form id="frm_detail">
+						<div class="area-input">
+						<div class="row">
+						<div class="col-md-12">
+						<div class="form-section">
+							<div class="row">
+								<div class="col-md-12">
+										<div class="form-group">
+											<div class="div-input-infor">[[${@baseTag.message('QuanLyTaiKhoan.literal.taiKhoan')}]]</div>
+											<input type="text" disabled class="form-control " id="userName" th:value = "${userName}" th:placeholder="${@baseTag.message('QuanLyTaiKhoan.literal.taiKhoan')}" maxlength=30 >
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<div class="div-input-infor">[[${@baseTag.message('QuanLyTaiKhoan.literal.hoVaTen')}]]</div>
+											<input type="text" class="form-control " id="hoTen" th:value = "${hoTen}" th:placeholder="${@baseTag.message('QuanLyTaiKhoan.literal.hoVaTen')}" maxlength=50>
+										</div>
+									</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<div class="div-input-infor">[[${@baseTag.message('QuanLyTaiKhoan.literal.oldPassword')}]]</div>
+										<input type="password" class="form-control" id="oldPassword" th:placeholder="${@baseTag.message('QuanLyTaiKhoan.literal.oldPassword')}" maxlength=20>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<div class="div-input-infor">[[${@baseTag.message('QuanLyTaiKhoan.literal.newPassword')}]]</div>
+										<input type="password" class="form-control" id="newPassword" th:placeholder="${@baseTag.message('QuanLyTaiKhoan.literal.newPassword')}" maxlength=20>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<div class="div-input-infor">[[${@baseTag.message('QuanLyTaiKhoan.literal.rePassword')}]]</div>
+										<input type="password" class="form-control" id="rePassword" th:placeholder="${@baseTag.message('QuanLyTaiKhoan.literal.rePassword')}" maxlength=20>
+									</div>
+								</div>
+								<div class="col-md-3"></div>
+								<div class="col-md-6">
+									<button id="update_password" type = "button" class="btn btn-success w-100"><th:bock th:utext="${@baseTag.message('QuanLyTaiKhoan.literal.updatePassword')}"></button>
+								</div>
+							</div>
+							<!-- <th:block th:replace="fragments/LayoutDetailCommon"/> -->
+						</div>
+						</div>
+						</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

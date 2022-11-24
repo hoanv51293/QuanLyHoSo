@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap4-toggle/3.6.0/css/bootstrap4-toggle.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/resources/css/header.css}" />
+<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap4-toggle/3.6.0/js/bootstrap4-toggle.min.js}"></script>
+<script type="text/javascript">
+	async function hideMenu() {
+		
+		//for (var i = 250; i>=0;i-=10) {
+			parent.main.document.getElementById("frame-main").cols = 0+", *";
+		//	let delayres = await delay();
+		//}
+		$('#hide-menu').addClass("d-none");
+		$('#show-menu').removeClass("d-none");
+	}
+	async function showMenu() {
+		//for (var i = 0; i<=250;i+=10) {
+			parent.main.document.getElementById("frame-main").cols = 250+", *";
+		//	let delayres = await delay();
+		//}
+		$('#hide-menu').removeClass("d-none");
+		$('#show-menu').addClass("d-none");
+	}
+	//function delay() {
+	//	return new Promise(resolve => {
+	//		setTimeout(() => {
+	//			resolve(0.5);
+	//		}, 0);
+	//	});
+	//}
+</script>
+<style th:inline="text">
+</style>
+</head>
+<body>
+	<th:block th:fragment="header">
+	<span class="d-inline mt-3 text-bold user-login" style="min-width:250px;position: absolute;left:0px">　<i style="font-size: 24px;" class="fa fa-user-o" aria-hidden="true"></i> <th:bock th:utext="${user.name}"></span>
+	<span class="d-inline mt-3 text-bold user-login" style="min-width:250px;position: absolute;left:250px">　<i style="font-size: 24px;" class="fa fa-child" aria-hidden="true"></i> <th:bock th:utext="${user.roleName}"></span>
+	<div class = "float-right mr-5 mt-2"><span><a class="nav-link" th:if="${#request.userPrincipal != null}" th:href="@{/logout}" target = "screen"><i class="fa fa-sign-out" style = "font-size:24px"></i> Đăng xuất</a></span></div>
+	</th:block>
+</body>
+</html>

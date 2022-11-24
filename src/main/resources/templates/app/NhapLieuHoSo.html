@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorate="~{commons/main}">
+<head>
+<title th:text="${@baseTag.message('NhapLieuHoSo.literal.title')}"></title>
+<script th:inline="text">
+</script>
+<script type="text/javascript" th:inline="javascript" charset="UTF-8" th:src="@{/resources/js/app/NhapLieuHoSo.js}"></script>
+<script th:inline="javascript">
+</script>
+<style>
+	.modal-dialog{
+		margin-top:0px;
+		margin-bottom:6px;
+	}
+</style>
+</head>
+<body>
+	<div layout:fragment="content" th:remove="tag">
+		<!-- <div class="title-screen text-center mt-2">
+			<h2 class="font-weight-bold" th:text="${@baseTag.message('NhapLieuHoSo.literal.title')}"></h2>
+		</div> -->
+		<br>
+		<div class="modal-dialog" style="min-width: 80%;">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-body">
+					<form id="frm_detail">
+						<div class="area-input">
+						<div class="row">
+						<div class="col-md-12">
+						<div class="form-section">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-group">
+										<div class="div-input-infor">[[${@baseTag.message('NhapLieuHoSo.literal.soLt')}]]</div>
+										<input type="text" class="form-control " id="soLt" onchange = "changeSoLt(this.value)" name = "soLt" th:value="${form.soLt}"th:placeholder="${@baseTag.message('NhapLieuHoSo.literal.soLt')}" maxlength=50 >
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="form-group">
+										<div class="div-input-infor">&nbsp;</div>
+										<button id="btn_search" onclick = "refer()" type = "button" class="btn btn-success w-100"><th:bock th:utext="${@baseTag.message('common.search')}"></button>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						</div>
+						</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="modal-dialog" style="min-width: 80%;">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-body">
+					<form id="frm_detail">
+						<div class="area-input">
+						<div class="row">
+						<div class="col-md-12">
+						<div class="form-section">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-group">
+										<div class="div-input-infor">[[${@baseTag.message('NhapLieuHoSo.literal.ngayLap')}]]</div>
+										<input type="text" class="form-control date_picker" id="ngayLap" name = "ngayLap" th:placeholder="${@baseTag.message('NhapLieuHoSo.literal.ngayLap')}" maxlength=8 >
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<div class="div-input-infor">[[${@baseTag.message('NhapLieuHoSo.literal.ngayDk')}]]</div>
+										<input type="text" class="form-control date_picker" id="ngayDk" name = "ngayDk" th:placeholder="${@baseTag.message('NhapLieuHoSo.literal.ngayDk')}" maxlength=8 >
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<div class="div-input-infor">[[${@baseTag.message('NhapLieuHoSo.literal.ngayKt')}]]</div>
+										<input type="text" class="form-control date_picker" id="ngayKt" name = "ngayKt" th:placeholder="${@baseTag.message('NhapLieuHoSo.literal.ngayKt')}" maxlength=8 >
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<div class="div-input-infor">[[${@baseTag.message('NhapLieuHoSo.literal.ngayNl')}]]</div>
+										<input type="text" class="form-control date_picker" id="ngayNl" name = "ngayNl" th:placeholder="${@baseTag.message('NhapLieuHoSo.literal.ngayNl')}" maxlength=8 >
+									</div>
+								</div>
+
+								<div class="col-md-3">
+									<div class="form-group">
+										<div class="div-input-infor">[[${@baseTag.message('NhapLieuHoSo.literal.soDk')}]]</div>
+										<input type="text" class="form-control" id="soDk" name = "soDk" onchange = "reloadMaDvNl(this.value)" th:placeholder="${@baseTag.message('NhapLieuHoSo.literal.soDk')}" maxlength=50 >
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<div class="div-input-infor">[[${@baseTag.message('NhapLieuHoSo.literal.thoiHanBaoQuan')}]]</div>
+										<input type="text" class="form-control date_picker" id="thoiHanBaoQuan" name = "thoiHanBaoQuan" th:placeholder="${@baseTag.message('NhapLieuHoSo.literal.thoiHanBaoQuan')}" maxlength=8 >
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<div class="div-input-infor">[[${@baseTag.message('NhapLieuHoSo.literal.maLoai')}]]</div>
+										<select class="form-control radius" id="maLoai" name="maLoai">
+											<option th:each="db : ${LOAI_HO_SO}" th:value="${db.key}" th:utext="|${db.value}|"></option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<div class="div-input-infor">[[${@baseTag.message('NhapLieuHoSo.literal.trichYeu')}]]</div>
+										<textarea th:class="form-control" id="trichYeu" name = "trichYeu" rows="5" th:placeholder="${@baseTag.message('NhapLieuHoSo.literal.trichYeu')}"></textarea>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<div class="div-input-infor">[[${@baseTag.message('NhapLieuHoSo.literal.cbnl')}]]</div>
+										<input type="text" class="form-control" id="cbnl" name = "cbnl" th:placeholder="${@baseTag.message('NhapLieuHoSo.literal.cbnl')}" maxlength=50>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<div class="div-input-infor">[[${@baseTag.message('NhapLieuHoSo.literal.maDvNl')}]]</div>
+										<select class="form-control radius" id="maDvNl" name="maDvNl">
+											<option th:each="db : ${DON_VI_NOP_LUU}" th:value="${db.key}" th:utext="|${db.key +' : ' + db.value}|"></option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>
+						</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="modal-dialog" style="min-width: 80%; margin-top:20px;">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-body">
+					<form id="frm_detail">
+						<div class="area-input">
+						<div class="row">
+						<div class="col-md-12">
+						<div class="form-section">
+							<div class="row">
+								<div class="col-md-2">
+									<a href="#" onclick = "executeSubmit('POST')" class="btn btn-primary w-100"><i class="fa fa-plus-circle" aria-hidden="true"></i> <span><th:bock th:utext="${@baseTag.message('common.message.add')}"></span></a>
+								</div>
+								<div class="col-md-2">
+									<a href="#" onclick = "executeSubmit('PUT')" class="btn btn-warning w-100"><i class="fa fa-pencil" aria-hidden="true"></i> <span><th:bock th:utext="${@baseTag.message('common.message.edit')}"></span></a>
+								</div>
+								<th:block th:if="${user.roleId != '3'}">
+									<div class="col-md-2">
+										<a href="#" onclick = "executeSubmit('DELETE')" class="btn btn-danger w-100"><i class="fa fa-minus-circle" aria-hidden="true"></i> <span><th:bock th:utext="${@baseTag.message('common.message.delete')}"></span></a>
+									</div>
+								</th:block>
+								<th:block th:if="${form.soLt != null && form.soLt != ''}">
+								<div class="col-md-4"></div>
+									<div class="col-md-2">
+										<a href="#" onclick = "executeBack()" class="btn btn-light w-100"><span>Quay lại </span> <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+									</div>
+								</th:block>
+							</div>
+						</div>
+						</div>
+						</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<th:block th:replace="fragments/ModalDelete :: ModalDelete" />
+		<th:block th:replace="fragments/ListItemHidden"/>
+		<form name = "DanhSachHoSoModel" target="screen"  th:attr="action=@{/Master/DanhSachHoSo}" method="GET">
+		</form>
+	</div>
+</body>
+</html>

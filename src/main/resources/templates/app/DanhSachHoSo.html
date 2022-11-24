@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorate="~{commons/main}">
+<head>
+<title th:text="${@baseTag.message('NhapLieuHoSo.literal.title')}"></title>
+<link rel="stylesheet" type="text/css" th:href="@{/resources/css/app/QuanLyTaiKhoan.css}" />
+<script th:inline="text">
+</script>
+<script type="text/javascript" th:inline="javascript" charset="UTF-8" th:src="@{/resources/js/app/DanhSachHoSo.js}"></script>
+<script th:inline="javascript">
+	messageHeaderModelDetailUpdate=[[${@baseTag.message('NhapLieuHoSo.literal.edit')}]];
+	messageHeaderModelDetailAdd=[[${@baseTag.message('NhapLieuHoSo.literal.add')}]];
+</script>
+</head>
+<body>
+	<div layout:fragment="content" th:remove="tag">
+		<!-- <div class="title-screen text-center mt-2">
+			<h2 class="font-weight-bold" th:text="${@baseTag.message('NhapLieuHoSo.literal.title')}"></h2>
+		</div> -->
+		<br>
+		<div class="area-input">
+		<form id="frm_search" enctype="multipart/form-data" target="upload"  th:attr="action=@{/Master/QuanLyTaiKhoan/upload}" method="POST">
+			<div class="row">
+				<div class="col-md-12 col-md-offset-1">
+					<div class="form-section">
+						<div class="row">
+							<div class="col-md-2">
+								<div class="form-group">
+									<div class="div-input-infor">ĐV Nộp lưu HS</div>
+									<select class="form-control radius" id="maDvNl" name="maDvNl">
+										<option></option>
+										<option th:each="db : ${DON_VI_NOP_LUU}" th:value="${db.key}" th:utext="|${db.key +' : ' + db.value}|"></option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="form-group">
+									<div class="div-input-infor">[[${@baseTag.message('NhapLieuHoSo.literal.maLoai')}]]</div>
+									<select class="form-control radius" id="maLoai" name="maLoai">
+										<option></option>
+										<option th:each="db : ${LOAI_HO_SO}" th:value="${db.key}" th:utext="|${db.value}|"></option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="div-input-infor">Tìm kiếm chung</div>
+								<div class="form-group">
+									<input type="text" class="item-input-search form-control " id="allSearch" th:placeholder="${@baseTag.message('NhapLieuHoSo.literal.search')}" maxlength=50>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="form-group">
+									<div class="div-input-infor">&nbsp;</div>
+									<button id="btn_search" type = "button" class="btn btn-success w-100"><th:bock th:utext="${@baseTag.message('common.search')}"></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+		</div>
+		<div class="pr-0">
+			<table
+				class="table table-hover table-striped table-bordered"
+				id="tbl_datatables">
+				<thead class="text-color-header">
+					<tr>
+						<th scope="col" class="text-center align-middle">Số HS lưu trữ</th>
+						<th scope="col" class="text-center align-middle"><th:bock th:utext="${@baseTag.message('NhapLieuHoSo.literal.ngayLap')}"></th>
+						<th scope="col" class="text-center align-middle">Ngày<br/>đăng ký</th>
+						<th scope="col" class="text-center align-middle">Ngày<br/>kết thúc</th>
+						<th scope="col" class="text-center align-middle">Ngày<br/>nộp lưu</th>
+						<th scope="col" class="text-center align-middle">Số HS đăng ký</th>
+						<th scope="col" class="text-center align-middle"><th:bock th:utext="${@baseTag.message('NhapLieuHoSo.literal.thoiHanBaoQuan')}"></th>
+						<th scope="col" class="text-center align-middle">Loại HS</th>
+						<th scope="col" class="text-center align-middle"><th:bock th:utext="${@baseTag.message('NhapLieuHoSo.literal.trichYeu')}"></th>
+						<th scope="col" class="text-center align-middle"><th:bock th:utext="${@baseTag.message('NhapLieuHoSo.literal.cbnl')}"></th>
+						<th scope="col" class="text-center align-middle">ĐV Nộp lưu HS</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<form name = "NhapLieuHoSoModel" target="screen"  th:attr="action=@{/Master/NhapLieuHoSo}" method="GET">
+			<input type = "hidden" name = "soLt" id = "soLt">
+		</form>
+	</div>
+</body>
+</html>
